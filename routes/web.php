@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PostsController::class, 'post'])->name('posts');
+Route::post('/create', [PostsController::class, 'create'])->name('create');
