@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class PostsController extends Controller
 {
     public function post() {
-        return view('posts.post');
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        return view('posts.post', compact('posts'));
     }
 
     public function create(Request $request) {
@@ -20,5 +21,7 @@ class PostsController extends Controller
         $post = new Post();
         $post->content = $request->content;
         $post->save();
+
+        return redirect()->back()->with('success', 'TODOを作成しました。');
     }
 }

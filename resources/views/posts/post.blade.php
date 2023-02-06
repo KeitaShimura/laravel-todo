@@ -11,9 +11,12 @@
 
 <body>
     <h1 class="fs-1" style="margin: 50px 0 0 40px;">TODO一覧、登録画面</h1>
+    @if (session()->has('success'))
+    <div class="alert alert-success" style="text-align: center;">{{ session()->get('success') }}</div>
+    @endif
     @error('content')
-                <div class="alert alert-danger" style="text-align: center;">{{ $message }}</div>
-            @enderror
+        <div class="alert alert-danger" style="text-align: center;">{{ $message }}</div>
+    @enderror
     <div style="text-align: center;" class="position-relative">
         <form method="POST" action="{{ route('create') }}">
             @csrf
@@ -37,13 +40,15 @@
                         </tr>
                     </thead>
                         <tbody>
+                            @foreach($posts as $post)
                             <tr>
-                                <td class="col-3" style="text-align: left; vertical-align: middle;"></td>
-                                <td class="col-3" style="vertical-align: middle;"><a href="update_do.php?id=" class="btn btn-primary">編集</a></td>
-                                <form method="post" action="delete.php?id=">
-                                    <td class="col-3" style="vertical-align: middle;"><button class="btn btn-danger">削除</button></td>
-                                </form>
+                                <td class="col-3" style="text-align: left; vertical-align: middle;">{{ $post->content }}</td>
+                                {{-- <td class="col-3" style="vertical-align: middle;"><a href="update_do.php?id=<?php print($post['id']); ?>" class="btn btn-primary">編集</a></td>
+                                <form method="post" action="delete.php?id=<?php print($post['id']); ?>">
+                                    <td class="col-3" style="vertical-align: middle;"><button class="btn btn-danger">削除</button></td> --}}
+                                {{-- </form> --}}
                             </tr>
+                            @endforeach
                         </tbody>
                 </table>
                 </div>
