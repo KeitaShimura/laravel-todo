@@ -31,4 +31,10 @@ class PostsController extends Controller
 
         return redirect()->back()->with('success', 'TODOを削除しました。');
     }
+
+    public function updatePage($id) {
+
+        $post = Post::findOrFail($id);
+        return view('posts.update', compact('post'));
+    }
 }

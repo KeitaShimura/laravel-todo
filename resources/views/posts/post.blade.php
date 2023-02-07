@@ -43,7 +43,7 @@
                             @foreach($posts as $post)
                             <tr>
                                 <td class="col-3" style="text-align: left; vertical-align: middle;">{{ $post->content }}</td>
-                                <td class="col-3" style="vertical-align: middle;"><a href="update_do.php?id=<?php print($post['id']); ?>" class="btn btn-primary">編集</a></td>
+                                <td class="col-3" style="vertical-align: middle;"><a href="{{ route('update', ['id' => $post->id]) }}" class="btn btn-primary">編集</a></td>
                                 <form method="POST" action="{{ route('delete', ['id' => $post->id]) }}">
                                     @csrf
                                     <td class="col-3" style="vertical-align: middle;"><button class="btn btn-danger">削除</button></td>
