@@ -24,4 +24,11 @@ class PostsController extends Controller
 
         return redirect()->back()->with('success', 'TODOを作成しました。');
     }
+
+    public function destroy(Request $request, $id) {
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->back()->with('success', 'TODOを削除しました。');
+    }
 }
