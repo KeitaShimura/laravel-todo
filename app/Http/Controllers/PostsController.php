@@ -37,4 +37,17 @@ class PostsController extends Controller
         $post = Post::findOrFail($id);
         return view('posts.update', compact('post'));
     }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'content' => 'string|required|max:100'
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        $post->content = $request->content;
+        $post->update(['id' => $post->id]);
+
+        return redirect()->route('posts')->with('success', 'TODOを作成しました。');
+    }
 }

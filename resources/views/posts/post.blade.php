@@ -29,15 +29,19 @@
             </div>
         </form>
         <article>
+            @if ($posts->count() <= 0)
                 <h3 class="fs-3" style="text-align: center; margin: 50px 0 0 0;">TODOはありません</h3>
+            @endif
                 <div class="table-responsive">
                 <table class="table" style="margin:30px auto; text-align: center; border-top: 1px solid lightgray; width:80%;" >
                     <thead style="height: 50px;">
+                        @if ($posts->count() > 0)
                         <tr>
                             <th class="col-3" style="font-weight: bold;">メモの内容</th>
                             <th class="col-3" style="font-weight: bold;">編集</th>
                             <th class="col-3" style="font-weight: bold;">削除</th>
                         </tr>
+                        @endif
                     </thead>
                         <tbody>
                             @foreach($posts as $post)
