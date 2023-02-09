@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('post', PostController::class);
-// Route::post('/create', [PostsController::class, 'create'])->name('create');
-// Route::get('/update/{id}', [PostsController::class, 'updatePage'])->name('update');
-// Route::post('/update/{id}', [PostsController::class, 'update'])->name('update');
-// Route::post('/delete/{id}', [PostsController::class, 'destroy'])->name('delete');
+
+Route::fallback(function () {
+	return redirect('post');
+});
