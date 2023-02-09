@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,7 @@ class PostsController extends Controller
         return view('posts.post', compact('posts'));
     }
 
-    public function create(Request $request) {
-
-        $request->validate([
-            'content' => 'string|required|max:100'
-        ]);
+    public function create(PostRequest $request) {
 
         $post = new Post();
         $post->content = $request->content;
@@ -25,7 +22,7 @@ class PostsController extends Controller
         return redirect()->back()->with('success', 'TODOを作成しました。');
     }
 
-    public function destroy(Request $request, $id) {
+    public function destroy($id) {
         $post = Post::findOrFail($id);
         $post->delete();
 
@@ -38,11 +35,7 @@ class PostsController extends Controller
         return view('posts.update', compact('post'));
     }
 
-    public function update(Request $request, $id) {
-        $request->validate([
-            'content' => 'string|required|max:100'
-        ]);
-
+    public function update(PostRequest $request, $id) {
         $post = Post::findOrFail($id);
 
         $post->content = $request->content;

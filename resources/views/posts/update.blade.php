@@ -19,7 +19,6 @@
         <h2 class="fs-1" style="text-align: left; margin: 50px 0 10px 10%;">TODOアプリ</h2>
         <form method="POST" action="{{ route('update', ['id' => $post->id ]) }}">
             @csrf
-            <input type="hidden" name="id" value="">
             <textarea name="content" cols="100" rows="4"  style="width:80%; padding: 5px 10px;">{{ old('content', $post->content) }}</textarea>
             <div class="button" style="margin-top: 5px;">
                 <a href="/" class="btn btn-secondary">戻る</a>
