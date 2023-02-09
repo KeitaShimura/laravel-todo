@@ -18,7 +18,7 @@
         <div class="alert alert-danger" style="text-align: center;">{{ $message }}</div>
     @enderror
     <div style="text-align: center;" class="position-relative">
-        <form method="POST" action="{{ route('create') }}">
+        <form method="POST" action="{{ route('post.store') }}">
             @csrf
             <h2 class="fs-2" style="text-align: left; margin: 50px 0 0 10%;">TODOアプリ</h2>
             <div class="form" style="text-align: center;">
@@ -47,9 +47,10 @@
                             @foreach($posts as $post)
                             <tr>
                                 <td class="col-3" style="text-align: left; vertical-align: middle;">{{ $post->content }}</td>
-                                <td class="col-3" style="vertical-align: middle;"><a href="{{ route('update', ['id' => $post->id]) }}" class="btn btn-primary">編集</a></td>
-                                <form method="POST" action="{{ route('delete', ['id' => $post->id]) }}">
+                                <td class="col-3" style="vertical-align: middle;"><a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">編集</a></td>
+                                <form method="POST" action="{{ route('post.destroy', $post->id) }}">
                                     @csrf
+                                    @method('DELETE')
                                     <td class="col-3" style="vertical-align: middle;"><button class="btn btn-danger">削除</button></td>
                                 </form>
                             </tr>

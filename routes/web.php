@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostsController::class, 'post'])->name('posts');
-Route::post('/create', [PostsController::class, 'create'])->name('create');
-Route::get('/update/{id}', [PostsController::class, 'updatePage'])->name('update');
-Route::post('/update/{id}', [PostsController::class, 'update'])->name('update');
-Route::post('/delete/{id}', [PostsController::class, 'destroy'])->name('delete');
+Route::resource('post', PostController::class);
+// Route::post('/create', [PostsController::class, 'create'])->name('create');
+// Route::get('/update/{id}', [PostsController::class, 'updatePage'])->name('update');
+// Route::post('/update/{id}', [PostsController::class, 'update'])->name('update');
+// Route::post('/delete/{id}', [PostsController::class, 'destroy'])->name('delete');
