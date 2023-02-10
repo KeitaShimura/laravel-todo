@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('post', PostController::class);
+Route::resource('post', PostController::class)->except(['create']);
 
 Route::fallback(function () {
 	return redirect('post');
